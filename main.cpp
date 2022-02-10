@@ -2,25 +2,19 @@
 using namespace std;
 
 #include "Stack.h"
+#include "Queue.h"
 
 int main() {
-    Stack stk;
- 
-    stk.push(1);
-    stk.peek();
+    Queue q;
 
-    stk.push(2);
-    stk.peek();
+    q.enqueue(5);
+    q.enqueue(7);
+    q.enqueue(10);
 
-    stk.push(3);
-    stk.peek();
-
-    stk.pop();
-    stk.peek();
-
-    stk.pop();
-    stk.peek();
-
-    stk.pop();
-    stk.peek();
+    cout << q.head->getVal() << endl;
+    q.dequeue();
+    cout << q.head->getVal() << endl;
+    q.dequeue();
+    cout << q.head->getVal() << endl;
+    q.dequeue();
 }
