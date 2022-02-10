@@ -5,24 +5,22 @@ using namespace std;
 
 int main() {
     Stack stk;
+ 
+    stk.push(1);
+    stk.peek();
 
-    int a = 1;
-    int b = 2;
-    int c = 3;
+    stk.push(2);
+    stk.peek();
 
-    int* p1 = &a;
-    int* p2 = &b;
-    int* p3 = &c;
-
-    stk.push(p1);
+    stk.push(3);
     stk.peek();
 
     stk.pop();
     stk.peek();
 
-    stk.push(p2);
+    stk.pop();
     stk.peek();
 
-    stk.push(p3);
+    stk.pop();
     stk.peek();
 }

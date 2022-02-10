@@ -1,6 +1,6 @@
 #include "Node.h"
 
-Node::Node(int* i) {
+Node::Node(int i) {
     val = i;
     next = NULL;
 }
@@ -10,7 +10,7 @@ Node::~Node() {
     next = NULL;
 }
 
-int* Node::getVal() {
+int Node::getVal() {
     return val;
 }
 
