@@ -1,7 +1,7 @@
 #include "tNode.h"
 
-tNode::tNode(int i) {
-    val = i;
+tNode::tNode(char c) {
+    val = c;
     left = NULL;
     right = NULL;
 }
@@ -12,7 +12,7 @@ tNode::~tNode() {
     right = NULL;
 }
 
-int tNode::getVal() {
+char tNode::getVal() {
     return val;
 }
 
