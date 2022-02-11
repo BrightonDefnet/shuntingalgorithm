@@ -4,7 +4,7 @@ Queue::Queue() {
     head = tail = NULL;
 }
 
-void Queue::enqueue(int i) {
+void Queue::enqueue(tNode* i) {
     Node* temp = new Node(i);
     if(tail == NULL) { //if empty, set head and tail to a new node
         head = tail = temp;
@@ -14,15 +14,17 @@ void Queue::enqueue(int i) {
     tail = temp; //set the end to temp
 }
 
-void Queue::dequeue() {
+tNode* Queue::dequeue() {
     if(head == NULL) { //return if queue is empty
-        cout << "queue is empty" << endl;
-        return;
+        cout << "\nerr: attempted to dequeue and empty queue" << endl;
+        exit(1);
     }
-    Node* temp = head;
+    tNode* toReturn = head->getVal(); //get the value
+    Node* temp = head; //create a temporary node
     head = head->getNext(); //set the head to the next node
     delete temp; //delete the old head
     if(head == NULL) { //if the head is null, set the tail to null
         tail = NULL;
     }
+    return toReturn;
 }

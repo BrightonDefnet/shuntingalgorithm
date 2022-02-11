@@ -4,7 +4,7 @@ Stack::Stack() {
     top = NULL;
 }
 
-void Stack::push(int i) {
+void Stack::push(tNode* i) {
     Node* temp = new Node(i); //create a temporary node
     temp->setNext(top); //set the next node to top
     top = temp; //set the top node to the temp node
@@ -13,7 +13,7 @@ void Stack::push(int i) {
 void Stack::pop() {
     Node* temp; //create a temporary node
     if(top == NULL) { //exit if the stack is empty
-        cout << "\nStack Underflow" << endl;
+        cout << "\nerr: Stack Underflow" << endl;
         exit(1);
     } else {
         temp = top;
@@ -22,10 +22,11 @@ void Stack::pop() {
     }
 }
 
-void Stack::peek() {
+tNode* Stack::peek() {
     if(top == NULL) {
-        cout << "stack is empty" << endl;
+        cout << "\n err: attempted to access value that doesn't exist" << endl;
+        exit(1);
     } else {
-        cout << top->getVal() << endl;
+        return top->getVal();
     }
 }
