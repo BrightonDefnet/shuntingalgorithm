@@ -14,17 +14,16 @@ void Queue::enqueue(tNode* i) {
     tail = temp; //set the end to temp
 }
 
-tNode* Queue::dequeue() {
+void Queue::dequeue() {
     if(head == NULL) { //return if queue is empty
         cout << "\nerr: attempted to dequeue and empty queue" << endl;
         exit(1);
     }
-    tNode* toReturn = head->getVal(); //get the value
     Node* temp = head; //create a temporary node
     head = head->getNext(); //set the head to the next node
-    delete temp; //delete the old head
+    delete temp;
+
     if(head == NULL) { //if the head is null, set the tail to null
         tail = NULL;
     }
-    return toReturn;
 }

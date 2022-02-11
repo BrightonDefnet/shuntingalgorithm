@@ -6,21 +6,12 @@ Node::Node(tNode* i) {
 }
 
 Node::~Node() {
-    delete &val;
-    delete &character;
+    free(val);
     next = NULL;
 }
 
 tNode* Node::getVal() {
     return val;
-}
-
-void Node::setChar(char c) {
-    character = c;
-}
-
-char Node::getChar() {
-    return character;
 }
 
 void Node::setNext(Node* newNext) {
