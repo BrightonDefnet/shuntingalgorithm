@@ -12,9 +12,9 @@ class Stack {
         void push(tNode* i); //add a node to the top of the stack
         void pop(); //remove a node from the top of the stack
         tNode* peek(); //view the top of the stack
+        Node* top; //top node
 
     private:
-        Node* top; //top node
 };
 
 #endif
