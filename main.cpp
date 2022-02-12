@@ -5,51 +5,61 @@
 #include "tNode.h"
 using namespace std;
 
-Queue toChars(string entry); //convert a given string to postfix notation
-tuple<Stack, Stack> sort(Queue chars, int len); //sort
+Queue shunt(string entry); //convert to postfix notation using a shunting algorithm
 
 ///main function
 int main() {
     bool running = true;
-    string str = "(2(1+4)^2)/3";
-    int len = str.length();
-    Queue chars = toChars(str);
-    tuple<Stack, Stack> sorted = sort(chars, len);
-    Stack nums = get<0>(sorted);
-    Stack ops = get<1>(sorted);
-    cout << "nums: " << nums.peek()->getVal() << endl;
-    cout << "ops: " << ops.peek()->getVal() << endl;
+    Queue postfix = shunt("2+(3*(8-4))");
 }
 
-///convert a given string to postfix notation
-Queue toChars(string entry) {
+///convert to postfix notation using a shunting algorithm
+Queue shunt(string entry) {
     Queue chars;
+    Queue out;
+    Stack ops;
+    int ol = 0;
     int len = entry.length();
+    int l = len;
     for(int i = 0; i < len; i++) { //store entry in a queue
         tNode* t = new tNode(entry.at(i));
         chars.enqueue(t);
     }
-    return chars;
-}
-
-///sort into two stacks
-tuple<Stack, Stack> sort(Queue chars, int len) {
-    Stack nums;
-    Stack ops;
-    for(int i = 0; i < len; i++) {
+    for(int i = 0; i < l; i++) {
         char c = chars.head->getVal()->getVal();
-        if(isdigit(c)) {
+        if(isdigit(c)) { //move digits to the left
             tNode* t = new tNode(c);
-            nums.push(t);
+            out.enqueue(t);
             chars.dequeue();
-        } else if(c=='+'||c=='-'||c=='/'||c=='*'||c=='^'||c=='('||c==')') {
+            ol++;
+        } else if(c=='+'||c=='-'||c=='/'||c=='*'||c=='^') { //move ops to the bottom
             tNode* t = new tNode(c);
             ops.push(t);
             chars.dequeue();
+            ol++;
+        } else if(c=='(') { //move ops to the bottom
+            tNode* t = new tNode(c);
+            ops.push(t);
+            chars.dequeue();
+        } else if(c==')') { //remove parenthesis
+            c = ops.peek()->getVal();
+            while(c!='(') {
+                tNode* t = new tNode(c);
+                out.enqueue(t);
+                ops.pop();
+                c = ops.peek()->getVal();
+            }
+            ops.pop();
+            chars.dequeue();
+            len-=2;
         } else {
             cout << "not a valid equation" << endl;
             exit(1);
         }
     }
-    return make_tuple(nums, ops);
+    for(int i = 0; i <= len-ol; i++) { //move the rest to the left
+        out.enqueue(ops.peek());
+        ops.pop();
+    }
+    return out;
 }
