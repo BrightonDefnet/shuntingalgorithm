@@ -1,6 +1,5 @@
 #include "Tree.h"
 
-//2384-*+
 Tree::Tree(Queue q) {
     Stack stk;
     while(q.head != NULL) {

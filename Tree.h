@@ -10,6 +10,7 @@ using namespace std;
 class Tree {
     public:
         Tree(Queue q); //create a binary tree from a postfix stack
+        void parse(); //parse to a string
         tNode* root; //root of the tree;
 
     private:
