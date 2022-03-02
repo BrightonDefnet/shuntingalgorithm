@@ -8,9 +8,9 @@ class Queue {
         void enqueue(Node* n); //add something to the queue
         Node* dequeue(); //remove something from the queue
         char getValue(); //get the value
+        Node* head; //head of the queue
 
     private:
-        Node* head; //head of the queue
         Node* tail; //tail of the queue
 };
 

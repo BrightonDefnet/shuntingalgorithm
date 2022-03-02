@@ -8,23 +8,6 @@ using namespace std;
 Queue shunt(string entry); //convert to postfix notation using a shunting algorithm
 
 int main() {
-    //create test queue
-    Node* one = new Node('2');
-    Node* two = new Node('3');
-    Node* three = new Node('8');
-    Node* four = new Node('4');
-    Node* five = new Node('-');
-    Node* six = new Node('*');
-    Node* seven = new Node('+');
-    Queue q;
-    q.enqueue(one);
-    q.enqueue(two);
-    q.enqueue(three);
-    q.enqueue(four);
-    q.enqueue(five);
-    q.enqueue(six);
-    q.enqueue(seven);
-
     cout << "original equation: 2+(3*(8-4))" << endl;
     Queue postfix = shunt("2+(3*(8-4))");
     Tree* t = new Tree(postfix);
