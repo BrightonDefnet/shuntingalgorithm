@@ -10,21 +10,32 @@ Tree::Tree(Queue q) {
         tNode* temp = q.head->getVal();
         if(isdigit(temp->getVal())) { //if the value is a digit
             tNode* tp = new tNode(temp->getVal());
+            cout << "\nadded " << tp->getVal() << " to tree" << endl;
             stk.push(tp);
-            cout << "pushed " << tp->getVal() << " to the tree" << endl;
         } else { //if the value is an operator
             tNode* tp = new tNode(temp->getVal());
-            tNode* r = new tNode(stk.peek()->getVal());
-            tp->setRight(r);
-            stk.pop();
-            tNode* l = new tNode(stk.peek()->getVal());
+            char c = stk.peek()->getVal();
+            tNode* l = new tNode(c);
             tp->setLeft(l);
             stk.pop();
+            cout << "\nadded " << l->getVal() << " to left" << endl;
+            c = stk.peek()->getVal();
+            tNode* r = new tNode(c);
+            tp->setRight(r);
+            stk.pop();
+            cout << "added " << r->getVal() << " to right" << endl;
             stk.push(tp);
-            cout << "pushed " << tp->getVal() << " to the tree" << endl;
+            cout << "added root " << tp->getVal() << " to tree" << endl;
             root = tp;
         }
         q.dequeue();
     }
-    cout << "NULL" << endl;
+
+    //test
+    for(int i = 0; i < 3; i++) {
+        cout << "\nroot: " << root->getVal() << endl;
+        cout << "right: " << root->getRight()->getVal() << endl;
+        cout << "left: " << root->getLeft()->getVal() << endl;
+        root = root->getLeft();
+    }
 }
