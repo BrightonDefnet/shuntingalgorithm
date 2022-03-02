@@ -1,4 +1,4 @@
-#include <iostream>
+//#include <iostream>
 #include<ctype.h>
 #include "Stack.h"
 #include "Queue.h"
@@ -11,6 +11,7 @@ Queue shunt(string entry); //convert to postfix notation using a shunting algori
 ///main function
 int main() {
     bool running = true;
+    cout << "original equation: 2+(3*(8-4))" << endl;
     Queue postfix = shunt("2+(3*(8-4))");
     Tree* tr = new Tree(postfix);
 }
