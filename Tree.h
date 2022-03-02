@@ -8,6 +8,7 @@ using namespace std;
 
 class Tree {
     public:
+        Tree();
 
     private:
 };
