@@ -9,8 +9,8 @@ class Queue {
         Node* dequeue(); //remove something from the queue
 
     private:
-        Node* head;
-        Node* tail;
+        Node* head; //head of the queue
+        Node* tail; //tail of the queue
 };
 
 #endif

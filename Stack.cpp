@@ -18,8 +18,7 @@ Node* Stack::pop() {
     } else {
         temp = top;
         top = top->getNext();
-        delete temp;
-        return top;
+        return temp;
     }
 }
 

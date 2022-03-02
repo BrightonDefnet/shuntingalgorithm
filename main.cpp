@@ -19,8 +19,18 @@ int main() {
     stk.push(three);
     stk.push(four);
     stk.push(five);
-    cout << stk.peek()->getValue() << endl;
-    for(int i = 0; i < 4; i++) {
+    for(int i = 0; i < 5; i++) {
         cout << stk.pop()->getValue() << endl;
+    }
+
+    //test the queue
+    Queue q;
+    q.enqueue(one);
+    q.enqueue(two);
+    q.enqueue(three);
+    q.enqueue(four);
+    q.enqueue(five);
+    for(int i = 0; i < 5; i++) {
+        cout << q.dequeue()->getValue() << endl;
     }
 }
