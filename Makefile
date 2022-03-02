@@ -1,7 +1,7 @@
 all: shunt
 
-shunt: main.o Queue.o Stack.o Tree.o Node.o tNode.o
-	g++ -g -o shunt main.o Queue.o Stack.o Tree.o Node.o tNode.o
+shunt: main.o Queue.o Stack.o Tree.o Node.o
+	g++ -g -o shunt main.o Queue.o Stack.o Tree.o Node.o
 
 main.o: main.cpp
 	g++ -g -c main.cpp
@@ -17,6 +17,3 @@ Tree.o: Tree.cpp Tree.h
 
 Node.o: Node.cpp Node.h
 	g++ -g -c Node.cpp
-
-tNode.o: tNode.cpp tNode.h
-	g++ -g -c tNode.cpp

@@ -1,23 +1,42 @@
 #include "Node.h"
 
-Node::Node(tNode* i) {
-    val = i;
+Node::Node(char c) {
+    value = c;
+    left = NULL;
+    right = NULL;
     next = NULL;
 }
 
 Node::~Node() {
-    free(val);
+    left = NULL;
+    right = NULL;
     next = NULL;
 }
 
-tNode* Node::getVal() {
-    return val;
+char Node::getValue() {
+    return value;
 }
 
-void Node::setNext(Node* newNext) {
-    next = newNext;
+Node* Node::getLeft() {
+    return left;
+}
+
+Node* Node::getRight() {
+    return right;
 }
 
 Node* Node::getNext() {
     return next;
+}
+
+void Node::setLeft(Node* n) {
+    left = n;
+}
+
+void Node::setRight(Node* n) {
+    right = n;
+}
+
+void Node::setNext(Node* n) {
+    next = n;
 }
