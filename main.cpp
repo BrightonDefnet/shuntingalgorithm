@@ -5,32 +5,80 @@
 #include "Tree.h"
 using namespace std;
 
+Queue shunt(string entry); //convert to postfix notation using a shunting algorithm
+
 int main() {
-    Node* one = new Node('a');
-    Node* two = new Node('b');
-    Node* three = new Node('c');
-    Node* four = new Node('d');
-    Node* five = new Node('e');
-
-    //test the stack
-    Stack stk;
-    stk.push(one);
-    stk.push(two);
-    stk.push(three);
-    stk.push(four);
-    stk.push(five);
-    for(int i = 0; i < 5; i++) {
-        cout << stk.pop()->getValue() << endl;
-    }
-
-    //test the queue
+    //create test queue
+    Node* one = new Node('2');
+    Node* two = new Node('3');
+    Node* three = new Node('8');
+    Node* four = new Node('4');
+    Node* five = new Node('-');
+    Node* six = new Node('*');
+    Node* seven = new Node('+');
     Queue q;
     q.enqueue(one);
     q.enqueue(two);
     q.enqueue(three);
     q.enqueue(four);
     q.enqueue(five);
-    for(int i = 0; i < 5; i++) {
-        cout << q.dequeue()->getValue() << endl;
+    q.enqueue(six);
+    q.enqueue(seven);
+
+    cout << "original equation: 2+(3*(8-4))" << endl;
+    Queue postfix = shunt("2+(3*(8-4))");
+}
+
+Queue shunt(string entry) {
+    Queue chars;
+    Queue out;
+    Stack ops;
+    int ol = 0;
+    int len = entry.length();
+    int l = len;
+    string postfix;
+
+    //store the characters in a queue
+    for(int i = 0; i < len; i++) {
+        Node* n = new Node(entry.at(i));
+        chars.enqueue(n);
     }
+
+    //shunting algorithm
+    for(int i = 0; i < l; i++) {
+        char c = chars.dequeue()->getValue();
+        if(isdigit(c)) {
+            Node* n = new Node(c);
+            out.enqueue(n);
+            postfix.push_back(c);
+            ol++;
+        } else if(c=='+'||c=='-'||c=='/'||c=='*'||c=='^') { //move ops to the bottom
+            Node* t = new Node(c);
+            ops.push(t);
+            ol++;
+        } else if(c=='(') { //move ops to the bottom
+            Node* t = new Node(c);
+            ops.push(t);
+        } else if(c==')') { //remove parenthesis
+            c = ops.peek()->getValue();
+            while(c!='(') {
+                Node* t = new Node(c);
+                out.enqueue(t);
+                postfix.push_back(c);
+                ops.pop();
+                c = ops.peek()->getValue();
+            }
+            ops.pop();
+            len-=2;
+        } else {
+            cout << "not a valid equation" << endl;
+            exit(1);
+        }
+    }
+    for(int i = 0; i <= len-ol; i++) { //move the rest to the left
+        out.enqueue(ops.peek());
+        postfix.push_back(ops.pop()->getValue());
+    }
+    cout << "postfix notation: " << postfix << endl;
+    return out;
 }

@@ -24,3 +24,7 @@ Node* Queue::dequeue() {
     if(head == NULL) tail = NULL; //set the tail to null if the head is null
     return temp;
 }
+
+char Queue::getValue() {
+    return head->getValue();
+}

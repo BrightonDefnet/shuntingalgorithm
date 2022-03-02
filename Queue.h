@@ -7,6 +7,7 @@ class Queue {
         Queue(); //create a new queue
         void enqueue(Node* n); //add something to the queue
         Node* dequeue(); //remove something from the queue
+        char getValue(); //get the value
 
     private:
         Node* head; //head of the queue
