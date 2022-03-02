@@ -14,6 +14,7 @@ class Tree {
         tNode* root; //root of the tree;
 
     private:
+        Stack stk;
 };
 
 #endif

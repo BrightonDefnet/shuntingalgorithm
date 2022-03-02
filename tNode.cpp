@@ -16,6 +16,10 @@ char tNode::getVal() {
     return val;
 }
 
+void tNode::setVal(char c) {
+    val = c;
+}
+
 void tNode::setLeft(tNode* newLeft) {
     left = newLeft;
 }
