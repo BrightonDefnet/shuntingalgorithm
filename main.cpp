@@ -27,6 +27,7 @@ int main() {
 
     cout << "original equation: 2+(3*(8-4))" << endl;
     Queue postfix = shunt("2+(3*(8-4))");
+    Tree* t = new Tree(postfix);
 }
 
 Queue shunt(string entry) {

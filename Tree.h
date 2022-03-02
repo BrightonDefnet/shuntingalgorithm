@@ -8,9 +8,10 @@ using namespace std;
 
 class Tree {
     public:
-        Tree();
+        Tree(Queue q);
 
     private:
+        Node* root;
 };
 
 #endif
