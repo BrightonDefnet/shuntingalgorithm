@@ -8,9 +8,21 @@ using namespace std;
 Queue shunt(string entry); //convert to postfix notation using a shunting algorithm
 
 int main() {
-    cout << "original equation: 2+(3*(8-4))" << endl;
-    Queue postfix = shunt("2+(3*(8-4))");
-    Tree* t = new Tree(postfix);
+    //original equation
+    string equation = "2+(3*(8-4))";
+    cout << "\noriginal equation: " << equation << "\n" << endl;
+
+    //prefix notation
+    Queue prefix = shunt(equation);
+    string prestr;
+    Tree* pre = new Tree(prefix);
+    pre->prefix(pre->root, prestr);
+
+
+    Queue infix = shunt(equation);
+    Tree* in = new Tree(prefix);
+    string instr;
+    in->infix(in->root, instr, 0);
 }
 
 Queue shunt(string entry) {

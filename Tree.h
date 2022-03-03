@@ -8,10 +8,12 @@ using namespace std;
 
 class Tree {
     public:
-        Tree(Queue q);
+        Tree(Queue q); //create a new tree
+        void infix(Node* r, string str, int i); //parse to infix notation
+        void prefix(Node* r, string str); //parse to prefix notation
+        Node* root;
 
     private:
-        Node* root;
 };
 
 #endif

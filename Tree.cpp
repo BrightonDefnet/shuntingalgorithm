@@ -21,3 +21,32 @@ Tree::Tree(Queue q) {
         }
     }
 }
+
+void Tree::infix(Node* r, string str, int i) {
+    if(r->getLeft()->getLeft() != NULL) {
+        str.push_back(r->getRight()->getValue());
+        str.push_back(r->getValue());
+        str.push_back('(');
+        i++;
+        infix(r->getLeft(), str, i);
+    } else {
+        str.push_back(r->getRight()->getValue());
+        str.push_back(r->getValue());
+        str.push_back(r->getLeft()->getValue());
+        for(int j = 0; j < i; j++) {
+            str.push_back(')');
+        }
+        cout << "infix notation: " << str << "\n" << endl;
+    }
+}
+
+void Tree::prefix(Node* r, string str) {
+    if(r->getLeft() != NULL) {
+        str.push_back(r->getValue());
+        str.push_back(r->getRight()->getValue());
+        prefix(r->getLeft(), str);
+    } else {
+        str.push_back(r->getValue());
+        cout << "prefix notation: " << str << "\n" << endl;
+    }
+}
